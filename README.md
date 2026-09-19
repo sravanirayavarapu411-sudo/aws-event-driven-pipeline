@@ -94,11 +94,9 @@ aws --endpoint-url=http://localhost:4566 sns list-topics
 - Infrastructure as code (Terraform/CloudFormation) instead of the
   `setup_infra.py` script, for a fully reproducible deploy.
 
-## Notes on testing
+## Verified working
 
-This project was written and syntax-checked in a sandboxed environment
-without Docker/network access, so it has **not yet been run end-to-end**.
-Before you rely on it: run through the Setup + Run steps above yourself,
-and expect to debug a few rough edges (S3-to-SQS event notification timing
-and LocalStack version quirks are the most common gotchas). Budget a day
-for this rather than assuming it works first try.
+This pipeline has been run end-to-end: file upload triggers the S3 event,
+the consumer picks it up from SQS, writes the record to DynamoDB, and
+publishes the SNS notification — confirmed via console output on a local
+Windows + Docker Desktop + LocalStack setup.
