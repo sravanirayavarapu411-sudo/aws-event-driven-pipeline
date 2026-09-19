@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  localstack:
+    image: localstack/localstack:latest
+    container_name: localstack-main
+    ports:
+      - "4566:4566"        # Edge port - all AWS APIs go through this
+    environment:
+      - SERVICES=s3,sqs,sns,dynamodb,iam
+      - DEBUG=1
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN}

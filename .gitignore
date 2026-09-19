@@ -1,0 +1,5 @@
+.env
+localstack-data/
+__pycache__/
+*.pyc
+sample*.txt
